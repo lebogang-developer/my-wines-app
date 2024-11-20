@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import '../app/globals.css'; // Import Tailwind CSS
 
 export const metadata = {
   title: 'My Wines',

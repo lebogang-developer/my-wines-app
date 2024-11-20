@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
             rel="noopener noreferrer"
             className="text-blue-400 hover:underline"
           >
-            LinkedIn
+            Lebo Sekaleli
           </Link>
         </p>
       </div>
