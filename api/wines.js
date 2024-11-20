@@ -38,28 +38,30 @@ router.get("/", async (req, res) => {
 
 // Update an existing wine
 router.put("/edit/:id", async (req, res) => {
-  const { id } = req.params;
-  const { name, year, type, varietal, rating, consumed, dateConsumed } = req.body;
-
-  try {
-    const wine = await prisma.wine.update({
-      where: { id: parseInt(id) },
-      data: {
-        name,
-        year,
-        type,
-        varietal,
-        rating: rating ? parseFloat(rating) : null,
-        consumed,
-        dateConsumed: consumed ? new Date(dateConsumed) : null,
-      },
-    });
-    res.status(200).json(wine);
-  } catch (error) {
-    res.status(500).json({ error: "Failed to update wine", details: error.message });
-  }
-});
-
+    const { id } = req.params; // Extract id from route params
+    const { name, year, type, varietal, rating, consumed, dateConsumed } = req.body;
+  
+    try {
+      const wine = await prisma.wine.update({
+        where: {
+          id: parseInt(id), // Ensure the id is an integer
+        },
+        data: {
+          name,
+          year,
+          type,
+          varietal,
+          rating: rating ? parseFloat(rating) : null,
+          consumed,
+          dateConsumed: consumed ? new Date(dateConsumed) : null,
+        },
+      });
+      res.status(200).json(wine);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to update wine", details: error.message });
+    }
+  });
+  
 // Delete a wine entry
 router.delete("/delete/:id", async (req, res) => {
   const { id } = req.params;
