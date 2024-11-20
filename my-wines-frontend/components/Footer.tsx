@@ -9,9 +9,9 @@ const Footer: React.FC = () => {
           © {new Date().getFullYear()} My Wines. All rights reserved.
         </p>
         <p className="text-sm mt-2">
-          Connect with me on{" "}
+          Connect with me on {" "}
           <Link
-            href="https://www.linkedin.com/in/your-profile"
+            href="https://www.linkedin.com/in/lebogang-peter-sekaleli-b89380173/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-400 hover:underline"
