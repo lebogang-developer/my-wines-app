@@ -6,12 +6,29 @@ const LoginPage: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Add your login logic here (e.g., API call)
-    console.log('Email:', email);
-    console.log('Password:', password);
+  
+    // Replace this with your actual API call
+    const response = await fetch("http://localhost:5000/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+  
+    if (response.ok) {
+      const { token } = await response.json();
+  
+      // Set the authentication token as a cookie
+      document.cookie = `auth-token=${token}; path=/; max-age=86400;`;
+  
+      alert("Login successful!");
+      window.location.href = "/"; // Redirect to the home page
+    } else {
+      alert("Login failed!");
+    }
   };
+  
 
   return (
     <div className='min-h-screen flex items-center justify-center bg-gray-100'>
